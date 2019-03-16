@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+
+  kafka:
+    image: landoop/kafka-lenses-dev
+    environment:
+      SAMPLEDATA: '0'
+      RUNNING_SAMPLEDATA: '0'
+      EULA: '${LENSES_LICENSE_URL}'
+    networks:
+      lenses_net:
+    ports:
+      - '3030:3030'
+      - '9092:9092'
+      - '2181:2181'
+      - '8081:8081'
+      - '9581:9581'
+      - '9582:9582'
+      - '9584:9584'
+      - '9585:9585'
+
+networks:
+  lenses_net:
+    driver: bridge
+    name: lenses_net
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
